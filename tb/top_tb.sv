@@ -43,26 +43,26 @@ initial begin
     //clk_tb<=1'b1;       // sets clk_tb to 1
     #(CLK_PERIOD*3);    // waits for CLK_PERIOD * 3 ticks
     
-    // 0 0 0
-    a = 4'd0;  b = 4'd0;  #(CLK_PERIOD*3);
+    // 0 1 1
+    a = 4'd0;  b = 4'd1;  #(CLK_PERIOD*3);
 
-    // 1 1 2
-    a = 4'd1;  b = 4'd1;  #(CLK_PERIOD*3);
+    // 1 3 4
+    a = 4'd1;  b = 4'd3;  #(CLK_PERIOD*3);
 
-    // 3 4 7
-    a = 4'd3;  b = 4'd4;  #(CLK_PERIOD*3);
+    // 3 3 6
+    a = 4'd3;  b = 4'd3;  #(CLK_PERIOD*3);
 
-    // 5 5 A
-    a = 4'd5;  b = 4'd5;  #(CLK_PERIOD*3);
+    // 5 7 C
+    a = 4'd5;  b = 4'd7;  #(CLK_PERIOD*3);
 
     // 9 6 F
     a = 4'd9;  b = 4'd6;  #(CLK_PERIOD*3);
 
-    // 8 8 16 overflow
-    a = 4'd8;  b = 4'd8;  #(CLK_PERIOD*3);
+    // 9 7 16 overflow
+    a = 4'd9;  b = 4'd7;  #(CLK_PERIOD*3);
 
-    // 15 15 30 overflow
-    a = 4'd15; b = 4'd15; #(CLK_PERIOD*3);
+    // 10 11 21 overflow
+    a = 4'd10; b = 4'd11; #(CLK_PERIOD*3);
 
     $finish;            // end simulation, otherwise it runs indefinitely
 end
