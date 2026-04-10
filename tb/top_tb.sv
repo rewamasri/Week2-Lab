@@ -14,7 +14,7 @@
 module top_tb;
 
 /** declare tb signals below */
-logic clk_tb;
+//logic clk_tb;
 
 logic [3:0] a;
 logic [3:0] b;
@@ -24,10 +24,10 @@ logic [7:0] n;
 top dut                    // declare an inst of top called "dut" (device under test)
 (
     /** hook up tb signals to dut signals */
-    .clk(clk_tb)           // connect dut's clk wire to clk_tb
+    //.clk(clk_tb)           // connect dut's clk wire to clk_tb
     .a(a),
     .b(b),
-    .n(n)
+    .seg7(n)
 );
 
 localparam CLK_PERIOD = 10;
@@ -40,29 +40,29 @@ end
 
 initial begin
     /** testbench logic goes below */
-    clk_tb<=1'b1;       // sets clk_tb to 1
+    //clk_tb<=1'b1;       // sets clk_tb to 1
     #(CLK_PERIOD*3);    // waits for CLK_PERIOD * 3 ticks
     
     // 0 0 0
-    val1 = 4'd0;  val2 = 4'd0;  #(CLK_PERIOD*3);
+    a = 4'd0;  b = 4'd0;  #(CLK_PERIOD*3);
 
     // 1 1 2
-    val1 = 4'd1;  val2 = 4'd1;  #(CLK_PERIOD*3);
+    a = 4'd1;  b = 4'd1;  #(CLK_PERIOD*3);
 
     // 3 4 7
-    val1 = 4'd3;  val2 = 4'd4;  #(CLK_PERIOD*3);
+    a = 4'd3;  b = 4'd4;  #(CLK_PERIOD*3);
 
     // 5 5 A
-    val1 = 4'd5;  val2 = 4'd5;  #(CLK_PERIOD*3);
+    a = 4'd5;  b = 4'd5;  #(CLK_PERIOD*3);
 
     // 9 6 F
-    val1 = 4'd9;  val2 = 4'd6;  #(CLK_PERIOD*3);
+    a = 4'd9;  b = 4'd6;  #(CLK_PERIOD*3);
 
     // 8 8 16 overflow
-    val1 = 4'd8;  val2 = 4'd8;  #(CLK_PERIOD*3);
+    a = 4'd8;  b = 4'd8;  #(CLK_PERIOD*3);
 
     // 15 15 30 overflow
-    val1 = 4'd15; val2 = 4'd15; #(CLK_PERIOD*3);
+    a = 4'd15; b = 4'd15; #(CLK_PERIOD*3);
 
     $finish;            // end simulation, otherwise it runs indefinitely
 end

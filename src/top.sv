@@ -12,7 +12,7 @@ module top (
 
     /** Output Ports */
     /** 7 segment display **/
-    output logic [7:0] out,
+    output logic [7:0] seg7
 );
 
 /** Logic */
@@ -22,12 +22,12 @@ wire [6:0] digis;
 adder adder_inst (
     .a(a),
     .b(b),
-    .n(sum)
+    .n(n)
 );
 
 decoder decoder_inst (
     .bcd(sum[3:0]),
-    .seg7(segments)
+    .seg7(digis)
 );
 
 assign seg7[6:0] = digis;
